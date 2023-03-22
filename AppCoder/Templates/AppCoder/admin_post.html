@@ -1,0 +1,27 @@
+
+
+{% load static %}
+
+{% block principal %}
+
+<h1>Admin de Post</h1>
+<form action="{% url 'buscar-post' %}" class = "d-flex">
+    <input class="form-control me-2" name="criterio" type="search" placeholder=" buscar" aria-label="Buscar">
+    <button class=" btn btn-outline-success" type="submit">Search</button>
+
+
+
+</form>
+ <form action="{% url 'agregar-post' %}" method="post">
+    {% csrf_token %}
+    {{form.as_p}}
+    <input type="submit" value="Agregar">
+ </form>
+
+<ul>
+    {% for post in posts %}
+    <li> {{post.id}}  {{post.Nombre}} {{post.Apellido}} {{post.DNI}} </li>
+    {% endfor %}
+</ul>
+
+{% endblock %}

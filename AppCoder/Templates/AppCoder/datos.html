@@ -1,0 +1,27 @@
+
+
+{% load static %}
+
+{% block principal %}
+
+<h1>Datos extra</h1>
+<form action="{% url 'buscar-datos' %}" class = "d-flex">
+    <input class="form-control me-2" name="criterio" type="search" placeholder=" buscar" aria-label="Buscar">
+    <button class=" btn btn-outline-success" type="submit">Search</button>
+
+
+
+</form>
+ <form action="{% url 'agregar-datos' %}" method="post">
+    {% csrf_token %}
+    {{form.as_p}}
+    <input type="submit" value="Agregar">
+ </form>
+
+<ul>
+    {% for datos in datos %}
+    <li> {{Datos.id}} {{datos.Pais}} {{datos.fecha_de_nacimiento}}  </li>
+    {% endfor %}
+</ul>
+
+{% endblock %}

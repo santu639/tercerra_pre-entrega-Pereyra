@@ -1,0 +1,27 @@
+
+
+{% load static %}
+
+{% block principal %}
+
+<h1>Dato</h1>
+<form action="{% url 'buscar-Curso' %}" class = "d-flex">
+    <input class="form-control me-2" name="criterio" type="search" placeholder=" buscar" aria-label="Buscar">
+    <button class=" btn btn-outline-success" type="submit">Search</button>
+
+
+
+</form>
+ <form action="{% url 'agregar-curso' %}" method="post">
+    {% csrf_token %}
+    {{form.as_p}}
+    <input type="submit" value="Agregar">
+ </form>
+
+<ul>
+    {% for curso in cursos %}
+    <li> {{curso.id}} {{curso.Curso}} {{curso.Camada}}  </li>
+    {% endfor %}
+</ul>
+
+{% endblock %}
